@@ -1,0 +1,89 @@
+entity User {
+	id Integer,
+    userName String,
+    password String,
+    userType String,
+}
+
+entity Usertype {
+    
+    id Integer,
+    userType String,
+    
+}
+
+
+entity Profile{
+
+    id Integer,
+	fullName String,
+	currentCity String,
+	workStatus String,
+	workExperience String,
+    currency String,
+	currentAnnualSalary String,
+	mobileNumber Integer,
+	workExperience String,
+    emailAddress String,
+    user Integer,
+}
+    
+entity Jobdetail{
+
+    id Integer,
+	jobName String,
+	education String,
+	experienceRequired String,
+	salary String,
+    location String,
+	ageGroup String,
+	skillRequired String,
+	employmentType String,
+    noticePeriod String,
+    industryType Integer,
+    userId Integer,
+}
+
+entity Industry{
+
+    id Integer,
+	type String,
+}
+
+entity CompanyDetail{
+
+    id Integer,
+	companyId String,
+    companyInfo String,
+    aboutCompany String,
+    jobId Integer,
+}
+
+entity Application{
+
+    id Integer,
+	userId Integer,
+    jobId String,
+    companyId String,
+    applicationStatus String,
+}
+
+relationship OneToOne {
+   Profile{user} to User,
+   CompanyDetail{jobId} to Jobdetail,
+  
+}
+
+relationship ManyToOne {
+	User{userType} to Usertype,
+   Jobdetail{industryType} to Industry,
+   Jobdetail{userId} to User,
+   }
+
+relationship OneToMany{
+   User{userId} to Application,
+   Apllication{jobId} to Jobdetail,
+}
+    
+    
+
