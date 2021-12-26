@@ -1,0 +1,55 @@
+
+    
+entity Job{
+
+    id Integer,
+	jobName String,
+	education String,
+	experienceRequired String,
+	salary String,
+    location String,
+	ageGroup String,
+	skillRequired String,
+	employmentType String,
+    noticePeriod String,
+    industryType Integer,
+}
+
+entity Industry{
+
+    id Integer,
+	type String,
+}
+
+entity Company{
+
+    id Integer,
+	companyId String,
+    companyInfo String,
+    aboutCompany String,
+    jobId Integer,
+}
+
+entity Application{
+
+    id Integer,
+    jobId String,
+    companyId String,
+    applicationStatus String,
+}
+
+relationship OneToOne {
+   Company{jobId} to Job,
+  
+}
+
+relationship ManyToOne {
+	Job{industryType} to Industry
+   }
+
+relationship ManyToOne{
+   Application{jobId} to Job,
+}
+    
+    
+
